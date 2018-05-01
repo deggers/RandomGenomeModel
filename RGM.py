@@ -45,3 +45,19 @@ def Lreg_VariablePromLen(genome, fixedProm_Seq=False):
                 genome = splitResult[1]
                 regulatoryRegion.append(splitResult[0])
     return regulatoryRegion
+
+# new Genomes, 
+tmp = []
+for _ in range(100):
+    genome = genRandomGenome() 
+    regulatory_seq = Lreg_VariablePromLen(genome)
+    tmp.append(len(regulatory_seq))
+ax = sns.boxplot(x=tmp)
+ax.set_title('#Lreg with variable [PromSeq('+)]')
+
+for _ in range(100):
+    genome = generateRandomGenome() 
+    regulatory_seq = extractRegulatoryRegionWithVariation(genome, lower_prom_len = 5, upper_prom_len = 5,fixedProm_Seq=True)
+    tmp.append(len(regulatory_seq))
+ax = sns.boxplot(x=tmp)
+ax.set_title('#Regulatory Regions with fixed Promoter Sequence and length (5)')
